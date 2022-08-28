@@ -31,15 +31,15 @@ print(res)
 Replace the below code from:
 
 ```python
-    seq,pos = decode(pred_sent, lines[i])
-    result = [s for s in seq ]
+seq,pos = decode(pred_sent, lines[i])
+result = [s for s in seq ]
 ```
 
 to this:
 
 ```python
-    seq,pos = decode(pred_sent, lines[i])
-    result = [s+"/"+p for s,p in zip(seq,pos) ]
+seq,pos = decode(pred_sent, lines[i])
+result = [s+"/"+p for s,p in zip(seq,pos) ]
 ```
 
 @Created by Nakanyseth VUTH

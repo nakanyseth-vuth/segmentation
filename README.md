@@ -15,10 +15,10 @@ pip install -r requirements.txt
 
 ## Usage :open_mouth: :key:
 
-Import the funtion to your code:
+Import the funtions to your code:
 
-```
-from bilstm_tokenizer import tokenize_sentences_bilstm
+```python
+from bilstm_tokenizer import tokenize_sentences_bilstm, tokenize_file_bilstm
 
 input_sents = ["ខ្ញុំទៅសាលា", "សាលារៀនខ្ញុំនៅព្រែកលាប។"]
 res = tokenize_sentences_bilstm(input_sents)
@@ -30,16 +30,16 @@ print(res)
 
 Replace the below code from:
 
-```
+```python
     seq,pos = decode(pred_sent, lines[i])
     result = [s for s in seq ]
 ```
 
 to this:
 
-```
+```python
     seq,pos = decode(pred_sent, lines[i])
     result = [s+"/"+p for s,p in zip(seq,pos) ]
 ```
 
-@ Created by Nakanyseth VUTH
+@Created by Nakanyseth VUTH

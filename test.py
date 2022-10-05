@@ -15,7 +15,8 @@ def segment(fileName: str):
 
     sentences = tokenize_sentences_bilstm(lines)
 
-    newFile = open("generate/{}/{}_segment.txt".format(fileName,fileName), mode="w+", encoding="UTF-8")
+    createDir(fileName, fileName2=fileName + "_segment")
+    newFile = open("generate/{}/{}_segment.txt".format(fileName, fileName), mode="w+", encoding="UTF-8")
     for x in sentences:
         newFile.write(x + "\n")
     newFile.close()
@@ -42,7 +43,7 @@ def entity(fileName: str):
                     length = len(intentMap[intent][index])
                     word = intentMap[intent][index].strip()
 
-            if word:
+            if word != "":
                 ree = intent.splitEntity(word)
                 print("split Entity: " + str(ree))
 
@@ -53,15 +54,16 @@ def entity(fileName: str):
 
             else:
                 if newSentence == "":
-                    list.append(newSentence)
-                    errorList.append(newSentence)
+                    print("ERROR SENTENCE: " + newSentence)
+                    # errorList.append(sentence)
                 else:
-                    errorList.append(sentence)
+                    errorList.append(newSentence)
             print("newSentence: " + newSentence)
 
         print("newSentence; " + newSentence)
         list.append(newSentence)
 
+    createDir(fileName, fileName2=fileName + "_entity")
     f = open("generate/{}/{}_entity.txt".format(fileName, fileName), mode="w+", encoding="UTF-8")
     for intent in list:
         if intent:
@@ -75,13 +77,13 @@ def entity(fileName: str):
             print(x)
 
 
-def createDir(fileName):
-    os.makedirs(os.path.dirname("generate/{}/{}.txt".format(fileName, fileName)), exist_ok=True)
+def createDir(fileName, fileName2):
+    os.makedirs(os.path.dirname("generate/{}/{}.txt".format(fileName, fileName2)), exist_ok=True)
 
 
 def fileio(fileName, msg):
     # create a file
-    createDir(fileName)
+    createDir(fileName, fileName2=fileName)
 
     f = open("generate/{}/{}.txt".format(fileName, fileName), 'w+', encoding="utf-8")
     f.write(msg + "\n")

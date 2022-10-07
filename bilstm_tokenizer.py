@@ -209,3 +209,26 @@ def tokenize_sentences_bilstm(data):
         sent = re.sub(r'([0-9០-៩]{1,3})\s((,|.)\s([0-9០-៩]{3})(\s))+', r'\1\3\4\5', sent)
         sentences.append(sent)
     return sentences
+
+
+def tokenize_sentences_bilstm_pos(data):
+    lines = [line.strip() for line in data]
+
+    # print(lines)
+
+    predictions = test_predict(lines, tok_model)
+    pred_sents = vector2tag(predictions)
+
+    results = []
+    for i, pred_sent in enumerate(pred_sents):
+        seq, pos = decode(pred_sent, lines[i])
+        result = [s+"/"+p for s,p in zip(seq,pos) ]
+        results.append(result)
+
+    # print(results)
+    temp = [' '.join(sentence) for sentence in results]
+    sentences = []
+    for sent in temp:
+        sent = re.sub(r'([0-9០-៩]{1,3})\s((,|.)\s([0-9០-៩]{3})(\s))+', r'\1\3\4\5', sent)
+        sentences.append(sent)
+    return sentences

@@ -1,23 +1,50 @@
-from segmentation.models import Intent
-from segmentation.stores.process import pos
-from segmentation.test import sentences, segment, entity
+from models import Intent
+from stores.process import pos
+from test import sentences, segment, entity
 
 
-def busInfo():
-    fileName = "BusInfo"
-    words1 = ["ដឹងទេថា", "មានដឹងថា"]
+def askAboutCompetition():
+    fileName = "askAboutCompetition"
 
-    words2 = ["សាលាCADT", "សាលាស៊ីអេឌីធី", "បណ្ឌិតសភាបច្ចេកវិទ្យាឌីជីថល", "CADT"]
+    # words1 = ["សាលាCADT", "សាលាស៊ីអេឌីធី", "បណ្ឌិតសភាបច្ចេកវិទ្យាឌីជីថលកម្ពុជា", "CADT"]
+    #
+    # words2 = ["មាន", "បាន"]
+    #
+    # words3 = ["បង្កើតនូវកម្មវិធី", "hostនូវកម្មវិធី", "បានប្រកាស់ថាមាន"]
+    #
+    # words4 = ["Competition", "ការប្រកួតប្រជែង"]
+    #
+    # words5 = ["អ្វីខ្លះ?"]
 
-    words3 = ["មានឡានក្រុង", "មានឡានដឹកសិស្ស", "មានរថយន្តដឹកសិស្ស"]
+    # words1 = ["Vitou", "វិទូ", "លោកគ្រូវិទូ", "លោកគ្រូច័ន្ទត្រា", "teacher Chantra", "ច័ន្ទត្រា"]
+    # words2 = ["អាចប្រាប់ខ្ញំុថា"]
+    #
+    # words3 = ["សាលាCADT", "សាលាស៊ីអេឌីធី", "បណ្ឌិតសភាបច្ចេកវិទ្យាឌីជីថលកម្ពុជា", "CADT"]
+    #
+    # words4 = ["យើងមានCompetition", "របស់ពួកយើងមានបានបង្កើតEvent Competition", "របស់ពួកយើងមានបានបង្កើតកម្មវិធីប្រកួតប្រជែង"]
+    #
+    # words5 = ["អ្វីខ្លះ?"]
 
-    words4 = ["ដើម្បីដឹកសិស្ស", "សម្រួលការធ្វើដំណើររបស់សិស្ស"]
+    words1 = ["នៅអាគារinnovation center", "នៅអាគារអុីនូវេសិនសែនធឺរ"]
+    words2 = ["និង"]
+    words3 = ["អាគារIDT", "អាគារអាយដីធី"]
+    words4 = ["នឹង", "ដែលខ្ញំុរៀននឹង", "ដែលខ្មំុកំពុងនៅនឹង"]
+    words5 = ["គេមានបានបង្កើតកម្មវីធីប្រកួតប្រជែងអ្វីខ្លះ?", "គេមានបានHostកម្មវីធីប្រកួតប្រជែងអ្វីខ្លះ?"]
 
-    words5 = ["អត់?", "ដែរទេ?", "ចំនួនប៉ុន្មាន?"]
+    intentMap = {
+        Intent.Person: ["Vitou", "វិទូ", "លោកគ្រូវិទូ", "លោកគ្រូច័ន្ទត្រា", "teacher Chantra", "ច័ន្ទត្រា"],
+        Intent.Organization: ["សាលាCADT", "សាលាស៊ីអេឌីធី", "បណ្ឌិតសភាបច្ចេកវិទ្យាឌីជីថលកម្ពុជា", "CADT"],
+        Intent.Building: ["នៅអាគារinnovation center", "នៅអាគារអុីនូវេសិនសែនធឺរ"]
+    }
 
-    sentences(fileName=fileName, word1=words1, word2=words2, word3=words3, word4=words4, word5=words5)
-    segment(fileName=fileName)
-    entity(fileName=fileName, intentMap={})
+    # sentences(fileName=fileName, word1=words1, word2=words2, word3=words3, word4=words4, word5=words5)
+    # segment(fileName=fileName)
+    entity(fileName=fileName, intentMap=intentMap)
+    pos(fileName=fileName)
+
+
+
+
 
 def socialMediaExist():
     fileName = "SocialMediaExist"
@@ -127,6 +154,36 @@ def schoolMajor():
                               ],
         # Intent.Building: ["អន្តេរវាសិកដ្ឋាន", "Dorm", "កន្លែងស្នាក់"],
         # Intent.Room: ["ផ្ទះបាយ", "បន្ទប់ទឹក"],
+    }
+
+    # sentences(fileName=fileName, word1=words1, word2=words2, word3=words3, word4=words4, word5=words5)
+    # segment(fileName=fileName)
+    # entity(fileName=fileName, intentMap=intentMap)
+    pos(fileName=fileName)
+
+def askWhereHRRoom():
+    # ka ri ya lie HR
+    # ka ri ya lie បុក្គលិក
+    # room hr
+    # បណ្តោះបណ្តាល
+    # kang បុក្គលិក nv na del?
+    #
+
+    fileName = "AskWhereHRRoom"
+    words1 = ["អ្នកអាចប្រាប់", "លោកអាចប្រាប់", "បងអាចប្រាប់", "លោកអ៊ំុអាចប្រាប់", "អ្នកមឹងអាចប្រាប់"]
+
+    # words2 = ["សាលាCADT", "សាលាស៊ីអេឌីធី", "បណ្ឌិតសភាបច្ចេកវិទ្យាឌីជីថល", "CADT"]
+
+    # words2 = ["បងChanto", "បងចាន់តូ", "បងរិទ្ធ", "bongrith", "ដារា", "Dara"]
+    words2 = ["ខ្ញំុ", "ញំុ", "me"]
+    words3 = ["ថាកន្លែងណាជា", "ថាទៅផ្លូវណាបានទៅដល់", "ថាទៅជាន់ណាបានដល់", "ថាទៅអាគារណាបានដល់"]
+    words4 = ["បន្ទប់HR", "បន្ទប់បុក្គលិក", "បន្ទប់ធនធានមនុស្", "Department HR", "នាយកដ្ឋានធនធានមនុស្ស", "ដេប៉ាទីម៉ង់HR", "ដេប៉ាទីម៉ង់ធនធានមនុស្ស"]
+    words5 = ["ទៅ?", "ដែរ?"]
+
+    intentMap = {
+        Intent.Room: words4,
+        Intent.Person: ["បងChanto", "បងចាន់តូ", "បងរិទ្ធ", "bongrith", "ដារា", "Dara"],
+
     }
 
     # sentences(fileName=fileName, word1=words1, word2=words2, word3=words3, word4=words4, word5=words5)

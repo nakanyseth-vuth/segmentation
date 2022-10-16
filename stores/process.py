@@ -1,11 +1,11 @@
 import os
 from typing import List, Dict, Union
 
-from segmentation.bilstm_tokenizer import tokenize_sentences_bilstm_pos, tokenize_sentences_bilstm
-from segmentation.models import Intent
-
+from bilstm_tokenizer import tokenize_sentences_bilstm_pos, tokenize_sentences_bilstm
+from models import Intent
 
 myList = []
+
 
 def pos(fileName: str):
     file = open("generate/{}/{}_segment.txt".format(fileName, fileName), mode="r", encoding="UTF-8")
@@ -110,7 +110,7 @@ def fileio(fileName, msg, mode: str = "a+"):
     f.close()
 
 
-def sentences(fileName, word1, word2, word3, word4, word5):
+def sentences(fileName, word1, word2, word3, word4, word5, initialWord: bool = True):
     # tmp = "\n word1:" + str(word1) + "\n " + "word2:" + str(word2) + "\n " + "word3:" + str(
     #     word3) + "\n " + "word4:" + str(word4) + "\n " + "word5:" + str(
     #     word5) + "\n " + "_______________________________________________"
@@ -122,8 +122,11 @@ def sentences(fileName, word1, word2, word3, word4, word5):
             for k in range(len(word3)):
                 for m in range(len(word4)):
                     for r in range(len(word5)):
-                        x = "តើ" + word1[i - 1] + word2[j - 1] + word3[k - 1] + word4[m - 1] + word5[r - 1]
+                        x = ""
+                        if initialWord:
+                            x = "តើ" + word1[i - 1] + word2[j - 1] + word3[k - 1] + word4[m - 1] + word5[r - 1]
+                        else:
+                            x = word1[i - 1] + word2[j - 1] + word3[k - 1] + word4[m - 1] + word5[r - 1]
                         print(x)
                         myList.append(x)
                         fileio(fileName, x)
-

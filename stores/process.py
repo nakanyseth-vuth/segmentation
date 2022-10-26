@@ -108,7 +108,7 @@ def convertToCSV(fileName: str):
         fileio(fileName=fileConvert, folderName=fileName, direc="convert", mode="w", msg="Question,Intent", format="csv")
 
         f = open("generate/{}/{}".format(fileName, fileGenerate), mode="r", encoding="UTF-8")
-        list = ["{},{}\n".format(x.strip(), fileName) for x in f.readlines()]
+        list = ["{},{}\n".format(x.strip(), fileName) for x in f.readlines() if x.strip()]
         f.close()
 
         f2 = open("convert/{}/{}.csv".format(fileName, fileConvert), mode="a", encoding="UTF-8")

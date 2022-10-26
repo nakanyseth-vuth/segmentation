@@ -42,10 +42,6 @@ def askAboutCompetition():
     entity(fileName=fileName, intentMap=intentMap)
     pos(fileName=fileName)
 
-
-
-
-
 def socialMediaExist():
     fileName = "SocialMediaExist"
 
@@ -190,3 +186,82 @@ def askWhereHRRoom():
     # segment(fileName=fileName)
     # entity(fileName=fileName, intentMap=intentMap)
     pos(fileName=fileName)
+
+def findCurrentTime():
+    fileName = "FindCurrentTimeV2"
+    # នៅពេលនេះម៉ោងប៉ុន្មានហើយ?
+    # words1 = ["ខ្ញំុចង់សួរថា", "ខ្ញំុឆ្ងល់ថា", "ហើយចុះ", "មិត្តខ្ញំុឆ្ងល់ថា", "គាត់ចង់ដឹង", "នាងចង់ដឹង",
+    #           "អាចប្រាប់មិត្តភក្តិខ្ញំុថា", "ប្រាប់Rathanaតិចមើល ", "ប្រាប់រតនាតិចមើល ", "ប្រាប់Panhaតិចមើល",
+    #           "ប្រាប់បញ្ញាតិចមើល", "Panhaដែលជាមិត្តខ្ញំុនេះ", "Rathanaដែលជាមិត្តខ្ញំុនេះ", "រតនាដែលជាមិត្តខ្ញំុនេះ"]
+    # words11 = ["ក្នុងប្រទេសកម្ពុជានេះ", "ក្នុងប្រទេសCambodia", "ក្នុងប្រទេសFrance", "ក្នុងប្រទេសបារាំង",
+    #           "ក្នុងប្រទេសអាឡីម៉ង់", "ក្នុងប្រទេសGermany"]
+
+    # words2 = ["នាទី", "ម៉ោង", "នៅ", "ឥឡូវ", "ក្នុងពិភពលោក", ]
+    # # words3 = ["នេះ","ក្នុងប្រទេសនេះ", "ក្នុងសាលារៀននេះ", "ក្នុងវិទ្យាល័យនេះ", "ក្រោមមេឃលើដីនេះ"]
+    # # words3 = ["ក្នុងវិទ្យាល័យCADTនេះ", "ក្នុងវិទ្យាល័យសុីអេដីឌីនេះ", "ក្នុងសាលារៀនសុីអេដីឌីនេះ"]
+    # words3 = ["នេះ"]
+    # words31 = ["នេះ"]
+    # words4 = ["ម៉ោងប៉ុន្មាន", "ពេលវេលាដើរដល់ណា", "ត្រនិចនាឡិការវិលដល់ណា"]
+    # words5 = ["ហើយ?"]
+
+    words1 = ["ម៉ោងដើរដល់ណាហើយ"]
+    words2 = ["នាទី", "ម៉ោង", "នៅ", "ឥឡូវ", "ក្នុងពិភពលោក", ]
+    words3 = ["នេះ"]
+    words4 = ["ម៉ោងប៉ុន្មាន", "ពេលវេលាដើរដល់ណា", "ត្រនិចនាឡិការវិលដល់ណា"]
+    words5 = ["ហើយ?"]
+
+    intentMap = {
+        Intent.Person: ["Rathana", "រតនា", "Panha", "បញ្ញា"],
+        Intent.Organization: ["សាលាCADT", "សាលារៀនសុីអេដីឌី", "វិទ្យាល័យសុីអេដីឌី", "CADT", "វិទ្យាល័យCADT"],
+        # Intent.Building: ["នៅអាគារinnovation center", "នៅអាគារអុីនូវេសិនសែនធឺរ"],
+        Intent.CountryCity: ["ប្រទេសFrance","ប្រទេសបារាំង", "ប្រទេសCambodia","ប្រទេសកម្ពុជា", "ប្រទេសអាឡីម៉ង់","ប្រទេសGermany"]
+    }
+
+    sentences(fileName=fileName, word1=words1, word2=words2, word3=words3, word4=words4, word5=words5,
+              initialWord=False)
+    # segment(fileName=fileName)
+    entity(fileName=fileName, intentMap=intentMap)
+    # pos(fileName=fileName)
+
+
+# def AskAboutCurrentProject():
+#     fileName = "AskCurrentProject"
+#
+#     words1 = ['Team Research', 'បងៗ', 'គ្រូៗនៅResearch', 'លោកគ្រូ', 'គេនៅTeam-Research',
+#               'គាត់ក្នុង Team-Research', 'ពួកគាត់ក្នុងក្រុមស្រាវជ្រាវ', 'Teacher', 'Researcher']
+#     words2 = ['នៅក្រុមជាមួយលោកគ្រូ']
+#     words3 = ['លីហៀង', 'Lyheang', 'ចាន់ទោ', 'Chanto',
+#               'វឌ្ឍនា', 'Vathna', 'ថៃហេង', 'Thayheng']
+#     words4 = ['សិក្សាស្រាវជ្រាវលើគំរោង', 'កំពុងធ្វើការលើគំរោង',
+#               'សិក្សាគំរោង', 'កំពុងresearch លើគំរោង', 'ធ្ចើការរៀនលើប្រធានបទ']
+#     words5 = ['អីដែរ?', 'អីដែរនឹង?', 'អ្វីដែរ?', 'អីគេទៅ?',
+#               'អីគេ?', 'អ្វីនឹង?', 'មួយណាដែរ?', 'អីគេដែរ?']
+#
+#     intentMap = {
+#         Intent.Person: ['លីហៀង', 'Lyheang', 'ចាន់ទោ', 'Chanto',
+#               'វឌ្ឍនា', 'Vathna', 'ថៃហេង', 'Thayheng', ]
+#     }
+#     sentences(fileName=fileName, word1=words1, word2=words2, word3=words3, word4=words4, word5=words5)
+#     segment(fileName=fileName)
+#     entity(fileName=fileName, intentMap=intentMap)
+#     pos(fileName)
+
+
+def AskAboutCurrentProject():
+    fileName = "AskCurrentProject"
+
+    words1 = ['Team Research', 'បងៗ', 'គ្រូៗនៅResearch', 'លោកគ្រូ', 'គេនៅTeam-Research',
+              'គាត់ក្នុង Team-Research', 'ពួកគាត់ក្នុងក្រុមស្រាវជ្រាវ', 'Teacher', 'Researcher']
+    words2 = ['នៅក្រុមជាមួយលោកគ្រូ']
+    words3 = ['លីហៀង', 'Lyheang', 'ចាន់ទោ', 'Chanto',
+              'វឌ្ឍនា', 'Vathna', 'ថៃហេង', 'Thayheng']
+    words4 = ['សិក្សាស្រាវជ្រាវលើគំរោង', 'កំពុងធ្វើការលើគំរោង',
+              'សិក្សាគំរោង', 'កំពុងresearch លើគំរោង', 'ធ្ចើការរៀនលើប្រធានបទ']
+    words5 = ['អីដែរ?', 'អីដែរនឹង?', 'អ្វីដែរ?', 'អីគេទៅ?',
+              'អីគេ?', 'អ្វីនឹង?', 'មួយណាដែរ?', 'អីគេដែរ?']
+
+    intentMap = {
+        Intent.Person: ["លោកគ្រូលីហៀង", 'លោកគ្រូ Lyheang', 'លោកគ្រូវឌ្ឍនា', 'លោកគ្រូ Chanto', 'លោកគ្រូច ាន់ ទោ',
+                        'លោកគ្រូ Vathna', "លោកគ្រូ Thayheng", 'លោកគ្រូ ថៃហេង'],
+    }
+    entity(fileName=fileName, intentMap=intentMap)

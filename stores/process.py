@@ -37,9 +37,9 @@ def segment(fileName: str):
 
 
 def entity(fileName: str, intentMap: Dict[Intent, Union[List[str], List[str]]]):
-    for x in intentMap:
-        intentMap[x] = tokenize_sentences_bilstm(intentMap[x])
-    print(intentMap)
+    # for x in intentMap:
+    #     intentMap[x] = tokenize_sentences_bilstm(intentMap[x])
+    # print(intentMap)
 
     file = open("generate/{}/{}_segment.txt".format(fileName, fileName), mode="r", encoding="UTF-8")
     oldList = file.readlines()
@@ -47,7 +47,6 @@ def entity(fileName: str, intentMap: Dict[Intent, Union[List[str], List[str]]]):
     file.close()
 
     list = []
-    errorList = []
 
     for sentence in lines:
         newSentence = ""
@@ -62,8 +61,6 @@ def entity(fileName: str, intentMap: Dict[Intent, Union[List[str], List[str]]]):
                         intentMap[intent][index]):
                     length = len(intentMap[intent][index])
                     word = intentMap[intent][index].strip()
-                else:
-                    errorIndex = index
 
             if word != "":
                 ree = intent.splitEntity(word)
@@ -78,7 +75,6 @@ def entity(fileName: str, intentMap: Dict[Intent, Union[List[str], List[str]]]):
         if newSentence == "" and sentence != "":
             print("ERROR SENTENCE: " + sentence)
             list.append(sentence)
-            errorList.append(sentence)
 
         print("newSentence; " + newSentence)
         list.append(newSentence)
@@ -92,9 +88,6 @@ def entity(fileName: str, intentMap: Dict[Intent, Union[List[str], List[str]]]):
 
     print("passeddddddd")
     print("Error List: ")
-    for x in errorList:
-        if x != "":
-            print(x)
 
 
 def createDir(fileName, fileName2):

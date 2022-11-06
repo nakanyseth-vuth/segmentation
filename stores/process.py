@@ -1,10 +1,26 @@
 import os
+import shutil
+
 from typing import List, Dict, Union
 
 from bilstm_tokenizer import tokenize_sentences_bilstm_pos, tokenize_sentences_bilstm
 from models import Intent
 
 myList = []
+
+
+def getAllFile():
+    if not os.path.exists("raw_segment"):
+        os.makedirs("raw_segment")
+    for name in os.listdir("generate"):
+        shutil.copyfile("generate/{}/{}_segment.txt".format(name, name), "raw_segment/{}".format(name))
+
+    # try:
+    #
+    #     # print([name for name in os.listdir("generate/") if os.path.isdir("name")])
+    #
+    # except:
+    #     print("fail")
 
 
 def pos(fileName: str):

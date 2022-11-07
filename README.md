@@ -8,7 +8,7 @@
 ## Installation
 
 ```shell
-git clone https://github.com/nakanyseth-vuth/segmentation.git
+git clone https://github.com/nakanyseth-vuth/git
 cd segmentation
 pip install -r requirements.txt
 ```

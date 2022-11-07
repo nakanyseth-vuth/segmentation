@@ -1,6 +1,21 @@
-from bilstm_tokenizer import tokenize_sentences_bilstm
+from models import Intent
+from stores.process import sentences, segment, entity, pos, convertToCSV, getAllFile
+import os
+import shutil
 
-sents=["គាត់កំពុងឆ្លើយតបទៅនឹងការអត្ថាធិប្បាយរបស់វាគ្មិន", "ញញ្ញត្តិរបស់ក្រុមបុគ្គលិកត្រូវបានតំណាងក្រសួងការងារទទួលយកប៉ុន្តែនៅមិនទាន់សម្រេចបែបណានៅឡើយទេ"]
-res = tokenize_sentences_bilstm(sents)
 
-print(res)
+if __name__ == '__main__':
+    """
+    FindEnrollmentLocation, AskaboutRegisterDate, AskaboutMotocycleParkingFee, AskaboutFemaleDressCode, AskaboutMaleDressCode, IsExistDoorExit, WhyshouldchooseCADT, SchoolMission
+    """
+    # fileName, words1, words2, words3, words4, words5,words6, intentMap = askWhereHRRoomIs()
+
+    # sentences(fileName=fileName, word1=words1, word2=words2,
+    #           word3=words3, word4=words4, word5=words5, word6=words6, initialWord=False)
+    # segment(fileName=fileName)
+    # entity(fileName=fileName, intentMap=intentMap)
+    # pos(fileName=fileName)
+    # convertToCSV(fileName=fileName)
+    shutil.copyfile("generate/ListEvent/ListEvent.txt", "rise/ListEvent.txt")
+
+    # getAllFile()
